@@ -1,0 +1,327 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-default);
+  color: var(--color-text);
+}
+
+a,
+button,
+img {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+:root {
+  --color-background: #000;
+  --color-text: #e9e9e9;
+  --color-orange: oklch(74% 0.15 32);
+  --color-celeste: oklch(65% 0.13 210);
+  --color-cadetblue: oklch(65% 0.05 210);
+  --color-yellow: oklch(80% 0.16 85);
+  --color-green: oklch(60% 0.16 135);
+  --color-green-dark: oklch(54% 0.11 164);
+  --color-red: oklch(65% 0.18 15);
+  --color-red-dark: oklch(57% 0.2 15);
+  --color-purple: oklch(62% 0.15 318);
+
+  --font-family-default: 'NotoSans', Inter, Roboto, 'Helvetica Neue', 'Arial Nova',
+    'Nimbus Sans', Arial, sans-serif;
+  --font-family-heading: 'FrauncesBold', Didot, 'Bodoni MT', 'Noto Serif Display',
+    'URW Palladio L', P052, Sylfaen, serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 200;
+}
+
+.container-indicator {
+  position: fixed;
+  top: 50%;
+  left: 2.5vmax;
+  width: 2vmax;
+  height: 12vmax;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vmax;
+
+  .follower {
+    width: 2vmax;
+    height: 2vmax;
+    background-color: var(--sb-thumb-color);
+    border-radius: 50%;
+    position: absolute;
+    transform: translateY(0vmax) scale(0.7);
+    animation: follow linear both;
+    animation-timeline: scroll(y);
+  }
+
+  .circle {
+    width: 2vmax;
+    height: 2vmax;
+    border: 0.1vmax solid #fff;
+    border-radius: 50%;
+  }
+}
+
+@font-face {
+  font-family: 'FrauncesBold';
+  font-weight: 700;
+  src: url('./assets/fonts/Fraunces_bold.woff2') format(woff2);
+}
+
+@font-face {
+  font-family: 'FrauncesBold';
+  font-weight: 400;
+  src: url('./assets/fonts/Fraunces_regular.woff2') format(woff2);
+}
+
+@font-face {
+  font-family: 'NotoSans';
+  font-weight: 700;
+  src: url('./assets/fonts/NotoSansDisplay_Bold.woff2') format(woff2);
+}
+@font-face {
+  font-family: 'NotoSans';
+  font-weight: 400;
+  src: url('./assets/fonts/NotoSansDisplay_Regular.woff2') format(woff2);
+}
+
+@font-face {
+  font-family: 'FrauncesBold';
+  font-weight: 200;
+  src: url('./assets/fonts/Fraunces_light.woff2') format(woff2);
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  --sb-track-color: #000;
+  --sb-thumb-color: var(--color-orange);
+  --sb-size: 0.85vmax;
+  position: relative;
+  animation: changeColor linear both;
+  animation-timeline: scroll(y);
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  background-color: #000;
+  background-image: radial-gradient(
+    100% 50% at 50% 100%,
+    color-mix(in srgb, var(--sb-thumb-color) 50%, transparent 50%) 0%,
+    #00a3ff00 50%,
+    #00a3ff00 100%
+  );
+  overflow: hidden;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  --pad-inline: 17vmax;
+  animation: blinkAnimation linear both;
+  animation-timeline: view(y);
+  animation-range: cover 0% cover 40%;
+
+  @media (width <= 1500px) and (orientation: portrait) {
+    --pad-inline: 7vmax;
+  }
+
+  .title,
+  .container-paraghaps {
+    position: absolute;
+  }
+
+  strong {
+    font-weight: 200;
+
+    &.orange {
+      color: var(--color-orange);
+    }
+    &.yellow {
+      color: var(--color-yellow);
+    }
+    &.celeste {
+      color: var(--color-celeste);
+    }
+    &.red {
+      color: var(--color-red);
+    }
+    &.red-dark {
+      color: var(--color-red-dark);
+    }
+    &.purple {
+      color: var(--color-purple);
+    }
+    &.green {
+      color: var(--color-green);
+    }
+    &.green-dark {
+      color: var(--color-green-dark);
+    }
+  }
+
+  .title {
+    top: 50%;
+    transform: translateY(-50%);
+    left: var(--pad-inline);
+    font-size: 5vmax;
+    width: 25%;
+    font-weight: 200;
+    text-wrap: balance;
+
+    @media (width <= 1500px) and (orientation: portrait) {
+      width: 60%;
+      top: 25%;
+    }
+  }
+
+  .container-paraghaps {
+    width: 60%;
+    left: 40%;
+    height: 76%;
+    bottom: 0;
+    position: absolute;
+
+    @media (width <= 1500px) and (orientation: portrait) {
+      width: 85%;
+      left: 15%;
+      height: fit-content;
+      bottom: 17%;
+    }
+
+    img {
+      float: left;
+      width: 23vmax;
+      shape-outside: var(--bg-flower);
+      shape-margin: 2vmax;
+      mask-image: linear-gradient(to bottom, black 90%, transparent);
+      shape-image-threshold: 0.8;
+
+      &.third {
+        filter: hue-rotate(180deg);
+      }
+
+      &.fourth {
+        filter: hue-rotate(310deg);
+      }
+
+      @media (width <= 1500px) and (orientation: portrait) {
+        filter: contrast(150%) brightness(120%);
+      }
+    }
+
+    p {
+      font-size: 1.7vmax;
+      width: 80%;
+      position: relative;
+      text-align: justify;
+      text-wrap: pretty;
+      hyphenate-limit-chars: 7;
+
+      @media (width <= 1500px) and (orientation: portrait) {
+        width: 90%;
+      }
+    }
+  }
+}
+
+@keyframes changeColor {
+  0% {
+    --sb-thumb-color: var(--color-orange);
+  }
+  25% {
+    --sb-thumb-color: var(--color-yellow);
+  }
+  50% {
+    --sb-thumb-color: var(--color-celeste);
+  }
+  75% {
+    --sb-thumb-color: var(--color-red);
+  }
+  100% {
+    --sb-thumb-color: var(--color-purple);
+  }
+}
+
+@keyframes follow {
+  0% {
+    transform: translateY(0) scale(0.7);
+  }
+  100% {
+    transform: translateY(10vmax) scale(0.7);
+  }
+}
+
+@keyframes blinkAnimation {
+  0% {
+    filter: blur(5rem);
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    filter: blur(3rem);
+    transform: scale(1.5);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    filter: blur(0);
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+}

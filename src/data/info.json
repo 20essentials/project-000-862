@@ -1,0 +1,42 @@
+[
+  {
+    "title": "<strong class='orange'>First</strong>, we define the snap points",
+    "srcImage": "./assets/flower1.webp",
+    "paragraphs": [
+      "We configure the scrolling element, in this case our <strong class='celeste'>HTML</strong> element, to snap strictly along the Y axis by applying the property <strong class='orange'>scroll-snap-type:</strong> <strong class='celeste'>y mandatory</strong>.",
+      "Next, we designate each <strong class='celeste'>section</strong> as a snapping element by using <strong class='orange'>scroll-snap-align:</strong> <strong class='celeste'>start</strong>, ensuring a smooth transition between sections."
+    ]
+  },
+  {
+    "title": "<strong class='yellow'>Next</strong>, we implement the scroll-driven animation",
+    "srcImage": "./assets/flower2.webp",
+    "paragraphs": [
+      "We monitor the <strong class='yellow'>view()</strong> position of each <strong class='green'>section</strong> by assigning it to a named timeline <strong class='yellow'>view-timeline: --section</strong>. Since we have already defined <strong class='yellow'>timeline-scope: --section</strong> in our HTML <strong class='green'>HTML</strong> element, this allows us to reference it globally.",
+      "The <strong class='green'>.content</strong> elements are animated using <strong class='yellow'>animation-timeline: --section</strong>, making them transition dynamically as their parent <strong class='green'>section</strong> moves within the viewport."
+    ]
+  },
+  {
+    "title": "<strong class='celeste'>Then</strong>, we establish a fixed stacking layout",
+    "srcImage": "./assets/flower3.webp",
+    "paragraphs": [
+      "We apply <strong class='orange'>position: fixed</strong> to the <strong class='celeste'>.content</strong> elements, removing them from the standard document flow. This causes them to overlap each other, ensuring only one is visible at a time.",
+      "Meanwhile, their parent <strong class='orange'>sections</strong> remain positioned normally beneath them, providing space for scrolling and controlling the <strong class='celeste'>animation-timeline</strong>."
+    ]
+  },
+  {
+    "title": "<strong class='red'>Finally</strong>, we introduce smooth transitions",
+    "srcImage": "./assets/flower4.webp",
+    "paragraphs": [
+      "By setting the <strong class='green-dark'>.content</strong> elements to <strong class='red'>position: fixed</strong>, we enable seamless transitions between them without any visible scrolling shifts.",
+      "We use a custom <strong class='green-dark'>@keyframes</strong> animation to elegantly switch between sections. Experiment with different effects in the navigation menu."
+    ]
+  },
+  {
+    "title": "<strong class='purple'>Caveats</strong>",
+    "srcImage": "./assets/flower5.webp",
+    "paragraphs": [
+      "Scroll-driven animations are currently <strong class='red-dark'>not</strong> supported in <strong class='purple'>Firefox</strong>. This demonstration utilizes a polyfill for compatibility.",
+      "The <strong class='red-dark'>blink</strong> effect relies on the <strong class='purple'>contrast()</strong> filter, which alters the appearance of the entire section. The background is intentionally set to black (or white) to maintain a consistent look during <strong class='purple'>transitions</strong> at full contrast."
+    ]
+  }
+]
